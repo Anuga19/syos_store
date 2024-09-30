@@ -18,6 +18,9 @@ public class PaymentService {
         if (cashTendered.compareTo(totalAmount) >= 0) {
             BigDecimal change = cashTendered.subtract(totalAmount);
             System.out.println("Change to return: " + change);
+
+
+
         } else {
             System.out.println("Insufficient cash provided.");
         }

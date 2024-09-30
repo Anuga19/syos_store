@@ -3,6 +3,7 @@ package com.syos.cli;
 import com.syos.model.OrderItem;
 import com.syos.model.Product;
 import com.syos.model.Order;
+import com.syos.model.Bill;
 import com.syos.service.*;
 import java.sql.SQLException;
 
@@ -40,12 +41,16 @@ public class CheckoutCLI {
                 System.out.print("Enter Quantity: ");
                 int quantity = scanner.nextInt();
 
-                boolean isAvailable = productService.checkStockAvailability(product, quantity);
-                if (isAvailable) {
-                    orderService.addItemToOrder(order, product, quantity);
-                    System.out.println(quantity + " " + product.getProductName() + " added to order.");
-                } else {
-                    System.out.println("Insufficient stock for " + product.getProductName());
+                try {
+                    boolean isAvailable = stockService.checkStockForProduct(product.getProductId(), quantity);
+                    if (isAvailable) {
+                        orderService.addItemToOrder(order, product, quantity);
+                        System.out.println(quantity + " " + product.getProductName() + " added to order.");
+                    } else {
+                        System.out.println("Insufficient stock for " + product.getProductName());
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Error checking stock availability: " + e.getMessage());
                 }
             } else {
                 System.out.println("Invalid Product Code.");
@@ -73,17 +78,6 @@ public class CheckoutCLI {
         BigDecimal cashTendered = scanner.nextBigDecimal();
 
         // Process payment and generate bill
-//        paymentService.processCashPayment(order, cashTendered);
-//        stockService.updateStockAfterSale(order);
-//        try {
-//            billService.generateBill(order, cashTendered, discount);
-//        } catch (SQLException e) {
-//            System.out.println("Error generating bill: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//
-//        System.out.println("Checkout complete. Bill generated.");
-
         try {
             orderService.saveOrder(order);  // Ensure order is saved before bill generation
         } catch (SQLException e) {
@@ -91,10 +85,17 @@ public class CheckoutCLI {
         }
 
         paymentService.processCashPayment(order, cashTendered);
-        stockService.updateStockAfterSale(order);
+
+
         try {
-            billService.generateBill(order, cashTendered, discount);
-            printBill(order, discount, cashTendered);
+            stockService.updateStockAfterSale(order);  // Handle SQLException for stock update
+        } catch (SQLException e) {
+            System.out.println("Error updating stock after sale: " + e.getMessage());
+        }
+
+        try {
+            Bill bill = billService.generateBill(order, cashTendered, discount);  // Capture the generated bill
+            printBill(order, bill, discount, cashTendered);  // Pass the Bill object to printBill
         } catch (SQLException e) {
             System.out.println("Error generating bill: " + e.getMessage());
         }
@@ -102,11 +103,11 @@ public class CheckoutCLI {
         System.out.println("Checkout complete. Bill generated.");
     }
 
-    public void printBill(Order order, BigDecimal discount, BigDecimal cashTendered) {
+    public void printBill(Order order, Bill bill, BigDecimal discount, BigDecimal cashTendered) {
         System.out.println("-------- SYOS STORE BILL --------");
-        System.out.println("Bill Serial Number: " + BillService.billSerialNumber);
+        System.out.println("Bill Serial Number: " + bill.getBillId());  // Use the Bill object to get the bill ID (serial number)
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println("Bill Date: " + formatter.format(new Date()));
+        System.out.println("Bill Date: " + formatter.format(bill.getBillDate()));  // Use the actual bill date from the Bill object
         System.out.println("---------------------------------");
 
         for (OrderItem item : order.getOrderItems()) {

@@ -8,15 +8,13 @@ public class Product {
     private String productCode;  // E.g., "BEV-MIL-24-10"
     private String productName;
     private BigDecimal price;
-    private int quantityAvailable;
 
     // Constructor
-    public Product(int productId, String productCode, String productName, BigDecimal price, int quantityAvailable) {
+    public Product(int productId, String productCode, String productName, BigDecimal price) {
         this.productId = productId;
         this.productCode = productCode;
         this.productName = productName;
         this.price = price;
-        this.quantityAvailable = quantityAvailable;
     }
 
     // Getters and Setters
@@ -52,11 +50,4 @@ public class Product {
         this.price = price;
     }
 
-    public int getQuantityAvailable() {
-        return quantityAvailable;
-    }
-
-    public void setQuantityAvailable(int quantityAvailable) {
-        this.quantityAvailable = quantityAvailable;
-    }
 }

@@ -15,18 +15,19 @@ public class Main {
             System.out.println("Connected to the database!");
 
             // Initialize DAOs
-            ProductDAO productDAO = new ProductDAO(connection);
-            OrderDAO orderDAO = new OrderDAO(connection);
-            BillDAO billDAO = new BillDAO(connection);
-            PaymentDAO paymentDAO = new PaymentDAO(connection);
-            StockDAO stockDAO = new StockDAO(connection);
+            ProductDAO productDAO = new ProductDAO(connection);  // Initialize ProductDAO
+            OrderDAO orderDAO = new OrderDAO(connection);        // Initialize OrderDAO
+            BillDAO billDAO = new BillDAO(connection);           // Initialize BillDAO
+            PaymentDAO paymentDAO = new PaymentDAO(connection);  // Initialize PaymentDAO
+            StockDAO stockDAO = new StockDAO(connection);        // Initialize StockDAO
+            ShelfStockDAO shelfStockDAO = new ShelfStockDAO(connection);  // Initialize ShelfStockDAO
 
             // Initialize Services
-            ProductService productService = new ProductService(productDAO);
-            OrderService orderService = new OrderService(orderDAO);
-            BillService billService = new BillService(billDAO);
-            PaymentService paymentService = new PaymentService(paymentDAO);
-            StockService stockService = new StockService(stockDAO);
+            StockService stockService = new StockService(stockDAO, shelfStockDAO);  // Pass StockDAO and ShelfStockDAO
+            ProductService productService = new ProductService(productDAO, stockService);  // Pass ProductDAO and StockService
+            OrderService orderService = new OrderService(orderDAO);  // Initialize OrderService
+            BillService billService = new BillService(billDAO);      // Initialize BillService
+            PaymentService paymentService = new PaymentService(paymentDAO);  // Initialize PaymentService
 
             // Initialize CLI for checkout
             CheckoutCLI checkoutCLI = new CheckoutCLI(productService, orderService, paymentService, stockService, billService);
@@ -34,7 +35,8 @@ public class Main {
             // Start the checkout process
             checkoutCLI.startCheckout();
 
-            connection.close();  // Close the connection after checkout is complete
+            // Close the connection after checkout is complete
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error occurred during checkout: " + e.getMessage());

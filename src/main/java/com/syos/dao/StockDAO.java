@@ -11,14 +11,12 @@ public class StockDAO {
         this.connection = connection;
     }
 
-    public void updateStock(int productId, int quantitySold) {
+    public void updateStockQuantity(int productId, int quantitySold) throws SQLException {
         String sql = "UPDATE stock SET quantity = quantity - ? WHERE product_id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, quantitySold);
-            stmt.setInt(2, productId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, quantitySold);
+            statement.setInt(2, productId);
+            statement.executeUpdate();
         }
     }
 }

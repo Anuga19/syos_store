@@ -33,7 +33,7 @@ public class BillService {
 //        billDAO.saveBill(bill);
 //    }
 
-    public void generateBill(Order order, BigDecimal cashTendered, BigDecimal discount) throws SQLException {
+    public Bill generateBill(Order order, BigDecimal cashTendered, BigDecimal discount) throws SQLException {
         // Calculate the total amount and change
         BigDecimal totalAmount = order.getTotalAmount().subtract(discount);  // Apply discount during billing
         BigDecimal changeAmount = cashTendered.subtract(totalAmount);  // Calculate change
@@ -52,5 +52,6 @@ public class BillService {
         billDAO.saveBill(bill);
 
         // Print the generated bill (we'll do this in the CheckoutCLI)
+        return bill;
     }
 }

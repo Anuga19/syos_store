@@ -17,12 +17,11 @@ public class ProductDAO {
 
     // Create or Add a new product
     public void addProduct(Product product) throws SQLException {
-        String sql = "INSERT INTO products (product_code, product_name, price, quantity_available) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO products (product_code, product_name, price) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, product.getProductCode());
             statement.setString(2, product.getProductName());
             statement.setBigDecimal(3, product.getPrice());
-            statement.setInt(4, product.getQuantityAvailable());
             statement.executeUpdate();
         }
     }
@@ -38,8 +37,7 @@ public class ProductDAO {
                             resultSet.getInt("product_id"),
                             resultSet.getString("product_code"),
                             resultSet.getString("product_name"),
-                            resultSet.getBigDecimal("price"),
-                            resultSet.getInt("quantity_available")
+                            resultSet.getBigDecimal("price")
                     );
                 }
             }
@@ -54,7 +52,6 @@ public class ProductDAO {
             statement.setString(1, product.getProductCode());
             statement.setString(2, product.getProductName());
             statement.setBigDecimal(3, product.getPrice());
-            statement.setInt(4, product.getQuantityAvailable());
             statement.setInt(5, product.getProductId());
             statement.executeUpdate();
         }
@@ -80,8 +77,7 @@ public class ProductDAO {
                         resultSet.getInt("product_id"),
                         resultSet.getString("product_code"),
                         resultSet.getString("product_name"),
-                        resultSet.getBigDecimal("price"),
-                        resultSet.getInt("quantity_available")
+                        resultSet.getBigDecimal("price")
                 ));
             }
         }
@@ -98,8 +94,7 @@ public class ProductDAO {
                         rs.getInt("product_id"),
                         rs.getString("product_code"),
                         rs.getString("product_name"),
-                        rs.getBigDecimal("price"),
-                        rs.getInt("quantity_available")
+                        rs.getBigDecimal("price")
                 );
             }
         } catch (SQLException e) {

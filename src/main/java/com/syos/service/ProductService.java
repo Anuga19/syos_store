@@ -9,9 +9,11 @@ import java.util.List;
 public class ProductService {
 
     private final ProductDAO productDAO;
+    private final StockService stockService;  // Add StockService dependency
 
-    public ProductService(ProductDAO productDAO) {
+    public ProductService(ProductDAO productDAO, StockService stockService) {
         this.productDAO = productDAO;
+        this.stockService = stockService;  // Initialize the StockService instance
     }
 
     // Add a new product
@@ -43,7 +45,8 @@ public class ProductService {
         return productDAO.findByProductCode(productCode);
     }
 
-    public boolean checkStockAvailability(Product product, int quantity) {
-        return product.getQuantityAvailable() >= quantity;
+    // Use the StockService instance to check stock availability
+    public boolean checkStockAvailability(Product product, int quantity) throws SQLException {
+        return stockService.checkStockForProduct(product.getProductId(), quantity);
     }
 }
