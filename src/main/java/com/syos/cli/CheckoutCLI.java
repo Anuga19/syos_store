@@ -74,31 +74,71 @@ public class CheckoutCLI {
             System.out.println("Total after discount: " + order.getTotalAmount().subtract(discount));
         }
 
+//        System.out.print("Enter Cash Tendered: ");
+//        BigDecimal cashTendered = scanner.nextBigDecimal();
+//
+//        // Process payment and generate bill
+//        try {
+//            orderService.saveOrder(order);  // Ensure order is saved before bill generation
+//        } catch (SQLException e) {
+//            System.out.println("Error saving order: " + e.getMessage());
+//        }
+
+////        paymentService.processCashPayment(order, cashTendered);
+//        paymentService.processCashPayment(bill, cashTendered);
+//
+//
+//        try {
+//            stockService.updateStockAfterSale(order);  // Handle SQLException for stock update
+//        } catch (SQLException e) {
+//            System.out.println("Error updating stock after sale: " + e.getMessage());
+//        }
+//
+//        try {
+//            Bill bill = billService.generateBill(order, cashTendered, discount);  // Capture the generated bill
+//            printBill(order, bill, discount, cashTendered);  // Pass the Bill object to printBill
+//        } catch (SQLException e) {
+//            System.out.println("Error generating bill: " + e.getMessage());
+//        }
+//
+//        System.out.println("Checkout complete. Bill generated.");
+
         System.out.print("Enter Cash Tendered: ");
         BigDecimal cashTendered = scanner.nextBigDecimal();
 
-        // Process payment and generate bill
+        // Save the order and generate the bill
         try {
             orderService.saveOrder(order);  // Ensure order is saved before bill generation
         } catch (SQLException e) {
             System.out.println("Error saving order: " + e.getMessage());
         }
 
-        paymentService.processCashPayment(order, cashTendered);
-
-
+        //updating the stock
         try {
             stockService.updateStockAfterSale(order);  // Handle SQLException for stock update
         } catch (SQLException e) {
             System.out.println("Error updating stock after sale: " + e.getMessage());
         }
 
+        // Generate the bill and capture it in a variable
+        Bill bill = null;
         try {
-            Bill bill = billService.generateBill(order, cashTendered, discount);  // Capture the generated bill
-            printBill(order, bill, discount, cashTendered);  // Pass the Bill object to printBill
+            bill = billService.generateBill(order, cashTendered, discount);  // Capture the generated bill
         } catch (SQLException e) {
             System.out.println("Error generating bill: " + e.getMessage());
         }
+
+        // Process payment using the generated Bill object
+        if (bill != null) {
+            try {
+                paymentService.processCashPayment(bill, cashTendered);  // Pass the Bill object, not the Order
+            } catch (SQLException e) {
+                System.out.println("Error processing payment: " + e.getMessage());
+            }
+        }
+
+        // Print the bill
+        printBill(order, bill, discount, cashTendered);
 
         System.out.println("Checkout complete. Bill generated.");
     }
