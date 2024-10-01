@@ -21,11 +21,15 @@ public class Main {
             PaymentDAO paymentDAO = new PaymentDAO(connection);  // Initialize PaymentDAO
             StockDAO stockDAO = new StockDAO(connection);        // Initialize StockDAO
             ShelfStockDAO shelfStockDAO = new ShelfStockDAO(connection);  // Initialize ShelfStockDAO
+            BatchDAO batchDAO = new BatchDAO(connection);
+            OrderItemsDAO orderItemsDAO = new OrderItemsDAO(connection);
 
             // Initialize Services
-            StockService stockService = new StockService(stockDAO, shelfStockDAO);  // Pass StockDAO and ShelfStockDAO
+            //StockService stockService = new StockService(stockDAO, shelfStockDAO);  // Pass StockDAO and ShelfStockDAO
+            StockService stockService = new StockService(stockDAO, shelfStockDAO, batchDAO);
             ProductService productService = new ProductService(productDAO, stockService);  // Pass ProductDAO and StockService
-            OrderService orderService = new OrderService(orderDAO);  // Initialize OrderService
+//            OrderService orderService = new OrderService(orderDAO);  // Initialize OrderService
+            OrderService orderService = new OrderService(orderDAO, orderItemsDAO);
             BillService billService = new BillService(billDAO);      // Initialize BillService
             PaymentService paymentService = new PaymentService(paymentDAO);  // Initialize PaymentService
 

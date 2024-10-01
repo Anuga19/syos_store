@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="fd307e3e-b741-4c31-b44f-9222e17198e2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/cli/CheckoutCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/cli/CheckoutCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/BillDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/BillDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/BatchDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/BatchDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/OrderItemsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/OrderItemsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/ShelfStockDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/ShelfStockDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/StockService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +42,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "updatingPaymentsTable",
+    "git-widget-placeholder": "testingRestockingLogin",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "/Users/anuga/Documents/Apiit/CCP1/syos_store/src/main/java/com/syos/Main.java"
   }

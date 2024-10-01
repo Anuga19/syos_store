@@ -1,6 +1,7 @@
 package com.syos.service;
 
 import com.syos.dao.OrderDAO;
+import com.syos.dao.OrderItemsDAO;
 import com.syos.model.Order;
 import com.syos.model.Product;
 import com.syos.model.OrderItem;
@@ -11,9 +12,11 @@ import java.math.BigDecimal;
 public class OrderService {
 
     private final OrderDAO orderDAO;
+    private final OrderItemsDAO orderItemsDAO;
 
-    public OrderService(OrderDAO orderDAO) {
+    public OrderService(OrderDAO orderDAO, OrderItemsDAO orderItemsDAO) {
         this.orderDAO = orderDAO;
+        this.orderItemsDAO = orderItemsDAO;  // Initialize OrderItemsDAO
     }
 
     public void addItemToOrder(Order order, Product product, int quantity) {
@@ -30,6 +33,8 @@ public class OrderService {
 
     public void saveOrder(Order order) throws SQLException {
         orderDAO.saveOrder(order);  // Save order and generate order_id
+        // Now save all order items to the order_items table
+        orderItemsDAO.saveOrderItems(order.getOrderId(), order.getOrderItems());  // Pass order_id and list of order items
     }
 
 //    public BigDecimal calculateDiscount(Order order, double discountPercentage) {
@@ -42,4 +47,6 @@ public class OrderService {
         BigDecimal totalAmount = order.getTotalAmount();
         return totalAmount.multiply(BigDecimal.valueOf(discountPercentage / 100));
     }
+
+
 }

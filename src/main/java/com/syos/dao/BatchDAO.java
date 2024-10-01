@@ -17,7 +17,7 @@ public class BatchDAO {
     }
 
     // Retrieve batches for a product
-    public List<Batch> getBatchesByProductId(int productId) throws SQLException {
+    public List<Batch> getBatchesForProduct(int productId) throws SQLException {
         List<Batch> batches = new ArrayList<>();
         String sql = "SELECT * FROM batches WHERE product_id = ? ORDER BY date_received ASC";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -40,10 +40,19 @@ public class BatchDAO {
     }
 
     // Update batch quantity after a sale
-    public void updateBatchQuantity(int batchId, int quantitySold) throws SQLException {
-        String sql = "UPDATE batches SET quantity = quantity - ? WHERE batch_id = ?";
+//    public void updateBatchQuantity(int batchId, int quantitySold) throws SQLException {
+//        String sql = "UPDATE batches SET quantity = quantity - ? WHERE batch_id = ?";
+//        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+//            statement.setInt(1, quantitySold);
+//            statement.setInt(2, batchId);
+//            statement.executeUpdate();
+//        }
+//    }
+
+    public void updateBatchQuantity(int batchId, int newQuantity) throws SQLException {
+        String sql = "UPDATE batches SET quantity = ? WHERE batch_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, quantitySold);
+            statement.setInt(1, newQuantity);
             statement.setInt(2, batchId);
             statement.executeUpdate();
         }

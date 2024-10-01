@@ -120,6 +120,15 @@ public class CheckoutCLI {
             System.out.println("Error updating stock after sale: " + e.getMessage());
         }
 
+        // Check if restocking is needed after sale
+        for (OrderItem item : order.getOrderItems()) {
+            try {
+                stockService.checkAndRestockShelf(item.getProduct().getProductId());
+            } catch (SQLException e) {
+                System.out.println("Error checking for restocking: " + e.getMessage());
+            }
+        }
+
         // Generate the bill and capture it in a variable
         Bill bill = null;
         try {
