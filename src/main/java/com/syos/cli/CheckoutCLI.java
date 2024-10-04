@@ -35,7 +35,15 @@ public class CheckoutCLI {
         while (moreItems) {
             System.out.print("Enter Product Code: ");
             String productCode = scanner.nextLine();
-            Product product = productService.getProductByCode(productCode);
+
+            Product product = null;
+            try {
+                // Handle the SQLException that can be thrown by getProductByCode
+                product = productService.getProductByCode(productCode);
+            } catch (SQLException e) {
+                System.out.println("Error retrieving product: " + e.getMessage());
+                continue;  // Skip the rest of the loop if there's an error
+            }
 
             if (product != null) {
                 System.out.print("Enter Quantity: ");
@@ -74,35 +82,6 @@ public class CheckoutCLI {
             System.out.println("Total after discount: " + order.getTotalAmount().subtract(discount));
         }
 
-//        System.out.print("Enter Cash Tendered: ");
-//        BigDecimal cashTendered = scanner.nextBigDecimal();
-//
-//        // Process payment and generate bill
-//        try {
-//            orderService.saveOrder(order);  // Ensure order is saved before bill generation
-//        } catch (SQLException e) {
-//            System.out.println("Error saving order: " + e.getMessage());
-//        }
-
-////        paymentService.processCashPayment(order, cashTendered);
-//        paymentService.processCashPayment(bill, cashTendered);
-//
-//
-//        try {
-//            stockService.updateStockAfterSale(order);  // Handle SQLException for stock update
-//        } catch (SQLException e) {
-//            System.out.println("Error updating stock after sale: " + e.getMessage());
-//        }
-//
-//        try {
-//            Bill bill = billService.generateBill(order, cashTendered, discount);  // Capture the generated bill
-//            printBill(order, bill, discount, cashTendered);  // Pass the Bill object to printBill
-//        } catch (SQLException e) {
-//            System.out.println("Error generating bill: " + e.getMessage());
-//        }
-//
-//        System.out.println("Checkout complete. Bill generated.");
-
         System.out.print("Enter Cash Tendered: ");
         BigDecimal cashTendered = scanner.nextBigDecimal();
 
@@ -113,7 +92,7 @@ public class CheckoutCLI {
             System.out.println("Error saving order: " + e.getMessage());
         }
 
-        //updating the stock
+        // Updating the stock
         try {
             stockService.updateStockAfterSale(order);  // Handle SQLException for stock update
         } catch (SQLException e) {
@@ -163,16 +142,16 @@ public class CheckoutCLI {
             BigDecimal itemTotal = item.getItemTotal();
             System.out.println("Item: " + item.getProduct().getProductName());
             System.out.println("Quantity: " + item.getQuantity());
-            System.out.println("Item Total: $" + itemTotal);
+            System.out.println("Item Total: LKR" + itemTotal);
             System.out.println("---------------------------------");
         }
 
         BigDecimal totalAmount = order.getTotalAmount().subtract(discount);
-        System.out.println("Total Before Discount: $" + order.getTotalAmount());
-        System.out.println("Discount: $" + discount);
-        System.out.println("Total After Discount: $" + totalAmount);
-        System.out.println("Cash Tendered: $" + cashTendered);
-        System.out.println("Change: $" + cashTendered.subtract(totalAmount));
+        System.out.println("Total Before Discount: LKR" + order.getTotalAmount());
+        System.out.println("Discount: LKR" + discount);
+        System.out.println("Total After Discount: LKR" + totalAmount);
+        System.out.println("Cash Tendered: LKR" + cashTendered);
+        System.out.println("Change: LKR" + cashTendered.subtract(totalAmount));
         System.out.println("---------------------------------");
     }
 }

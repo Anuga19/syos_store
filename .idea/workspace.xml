@@ -5,13 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd307e3e-b741-4c31-b44f-9222e17198e2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/cli/ReportsCLI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/cli/StockManagementCLI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/exceptions/InvalidReportTypeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/exceptions/OrderPersistenceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/exceptions/ReportGenerationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/exceptions/StockOperationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/factory/BillFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/factory/BillServiceFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/factory/OrderDAOFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/factory/ServiceFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/factory/StockServiceFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IBatchDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IBillDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IOrderDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IOrderItemsDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IPaymentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IProductDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IReportDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IReportGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IShelfStockDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/interfaces/IStockDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/reports/BillReportGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/reports/ReorderLevelReportGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/reports/StockReportGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/reports/TotalSalesReportGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/repositories/BillRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/BatchService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/ReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/ShelfStockService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/utilities/BillCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/syos/utilities/OrderCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/cli/CheckoutCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/cli/CheckoutCLI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/BatchDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/BatchDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/BillDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/BillDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/OrderDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/OrderItemsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/OrderItemsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/PaymentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/PaymentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/ReportDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/ReportDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/ShelfStockDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/ShelfStockDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/dao/StockDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/dao/StockDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/model/Batch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/model/Batch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/model/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/model/Bill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/model/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/model/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/model/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/model/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/model/ShelfStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/model/ShelfStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/model/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/model/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/service/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/BillService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/syos/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/syos/service/StockService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +71,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -42,7 +92,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "testingRestockingLogin",
+    "git-widget-placeholder": "updatingRestockLogic",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "/Users/anuga/Documents/Apiit/CCP1/syos_store/src/main/java/com/syos/Main.java"
   }
@@ -57,5 +107,16 @@
       <updated>1727164062651</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
